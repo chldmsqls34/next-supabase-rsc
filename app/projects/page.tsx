@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 export default async function Page() {
   const projects = await fetchAllProject();
   const project = null;
+  const memberData = null;
   const supabase = await createClient()
 
   const { data, error } = await supabase.auth.getUser()
@@ -19,7 +20,7 @@ export default async function Page() {
     return (
       <main className="h-screen flex md:px-10 lg:px-24 xl:px-52">
         <div className="flex w-full md:w-1/5 h-full justify-center">
-          <Sidebar projects={projects} project={project}/>
+          <Sidebar projects={projects} project={project} memberData={memberData}/>
         </div>
         <div className="flex w-full md:w-4/5">
           <div className="flex flex-col w-full h-full bg-slate-100 items-center justify-center space-y-2">

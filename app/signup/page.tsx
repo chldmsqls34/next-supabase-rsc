@@ -49,8 +49,6 @@ function SignUpPage() {
     }
   };
 
-
-
   return (
     <div className="w-screen h-screen flex">
       <div className="flex flex-col w-full items-center justify-center">
@@ -60,7 +58,7 @@ function SignUpPage() {
             <div className="text-sm text-muted-foreground">
               <small className="text-sm text-[#e79057] font-medium leading-none">TASK 관리 앱</small>에 방문해주셔서 감사합니다.
             </div>
-            <p className="text-sm text-muted-foreground">서비스를 이용하려면 로그인을 진행해주세요.</p>
+            <p className="text-sm text-muted-foreground">서비스를 이용하려면 회원가입을 진행해주세요.</p>
           </div>
         </div>
         <form onSubmit={handleSubmit}>

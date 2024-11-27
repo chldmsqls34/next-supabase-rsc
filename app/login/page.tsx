@@ -80,9 +80,9 @@ function LoginPage() {
               <div className="relative grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">비밀번호</Label>
-                  <Link href={"#"} className="ml-auto inline-block text-sm underline">
+                  {/* <Link href={"#"} className="ml-auto inline-block text-sm underline">
                     비밀번호를 잊으셨나요?
-                  </Link>
+                  </Link> */}
                 </div>
                 <Input id="password" name="password" type={showPassword ? "text" : "password"} placeholder="비밀번호를 입력하세요." required />
                 <Button size={"icon"} className="absolute top-[38px] right-2 -translate-y-1/4 bg-transparent hover:bg-transparent" onClick={togglePassword}>
