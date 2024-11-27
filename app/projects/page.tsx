@@ -1,20 +1,12 @@
 import { CreateProject } from "@/components/project/ProjectButton";
 import Sidebar from "@/components/project/Sidebar";
 import { fetchAllProject } from "@/lib/data";
-import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
-
 
 export default async function Page() {
   const projects = await fetchAllProject();
   const project = null;
   const memberData = null;
-  const supabase = await createClient()
-
-  const { data, error } = await supabase.auth.getUser()
-  if (error || !data?.user) {
-    redirect('/login')
-  }
 
   if (!projects || projects.length === 0) {
     return (
