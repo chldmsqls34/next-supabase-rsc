@@ -1,5 +1,5 @@
 import { createClient } from "./supabase/server";
-import { ProgressData, ProjectDTO } from "@/types";
+import { MemberDTO, ProgressData, ProjectDTO } from "@/types";
 
 export async function fetchAllProject() {
   try {
@@ -97,6 +97,32 @@ export async function fetchProgress(projectId: number): Promise<ProgressData>{
       completed: completedTasks,
     }
     return progressData;
+  } catch (error) {
+    console.error(error);
+    throw new Error("데이터가 가져오기 실패");
+  }
+}
+
+export async function fetchMember() {
+  try {
+    const supabase = await createClient();
+    const {data:userData} = await supabase.auth.getUser();
+    const userId = userData.user?.id;
+    const { data:memberData } = await supabase
+      .from("members")
+      .select()
+      .eq("user_id", userId)
+      .single();
+
+    if (!memberData) {
+      return null;
+    }
+    const clientData:MemberDTO = {
+      id: memberData.id,
+      userId: memberData.user_id,
+      nickname: memberData.nickname,
+    };
+    return clientData;
   } catch (error) {
     console.error(error);
     throw new Error("데이터가 가져오기 실패");

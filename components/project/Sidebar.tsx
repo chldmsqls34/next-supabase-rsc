@@ -4,9 +4,9 @@ import { CreateProject } from "./ProjectButton";
 import ProjectList from "./ProjectList";
 import { useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { ProjectDTO } from "@/types";
+import { MemberDTO, ProjectDTO } from "@/types";
 
-export default function Sidebar({projects,project}:{projects:ProjectDTO[]|null,project:ProjectDTO|null}) {
+export default function Sidebar({projects,project,memberData}:{projects:ProjectDTO[]|null,project:ProjectDTO|null,memberData:MemberDTO|null}) {
   const [search, setSearch] = useState<string>('');
   const filteredProjects = projects ? projects.filter((project) => project.title.toLowerCase().includes(search.toLowerCase())) : [];
 
@@ -20,7 +20,7 @@ export default function Sidebar({projects,project}:{projects:ProjectDTO[]|null,p
         <CreateProject/>
       </div>
       <div className="flex flex-col px-2 py-2 space-y-4 md:px-4">
-        <h1 className="text-xs text-gray-400 md:text-sm">Eunbin</h1>
+        <h1 className="text-xs text-gray-400 md:text-sm">{memberData?.nickname}</h1>
         <ProjectList projects={filteredProjects} projectDetail={project}/>
       </div>
     </div>

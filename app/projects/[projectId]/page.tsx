@@ -2,7 +2,7 @@ import ProjectInfo from "@/components/project/ProjectInfo";
 import Sidebar from "@/components/project/Sidebar";
 import { CreateTaskWithSecondaryButton } from "@/components/project/task/TaskButton";
 import TaskList from "@/components/project/task/TaskList";
-import { fetchAllProject, fetchProgress, fetchProjectById } from "@/lib/data";
+import { fetchAllProject, fetchMember, fetchProgress, fetchProjectById } from "@/lib/data";
 import { notFound } from "next/navigation";
 
 export default async function Page({
@@ -12,10 +12,11 @@ export default async function Page({
 }) {
   const {projectId} = params;
 
-  const [projects,project,progressData,] = await Promise.all([
+  const [projects,project,progressData,memberData] = await Promise.all([
     fetchAllProject(),
     fetchProjectById(projectId),
     fetchProgress(projectId),
+    fetchMember()
   ]);
   
   if(!project){
@@ -26,7 +27,7 @@ export default async function Page({
     return (
       <main className="h-screen flex md:px-10 lg:px-24 xl:px-52">
         <div className="flex w-full md:w-1/5 h-full justify-center">
-          <Sidebar projects={projects} project={project}/>
+          <Sidebar projects={projects} project={project} memberData={memberData}/>
         </div>
         <div className="flex w-full md:w-4/5">
           <div className="flex flex-col w-full">
@@ -46,7 +47,7 @@ export default async function Page({
   return(
     <main className="h-screen flex md:px-10 lg:px-24 xl:px-52">
       <div className="flex w-full md:w-1/5 h-full justify-center">
-        <Sidebar projects={projects} project={project}/>
+        <Sidebar projects={projects} project={project} memberData={memberData}/>
       </div>
       <div className="flex w-full md:w-4/5">
         <div className="flex flex-col w-full">

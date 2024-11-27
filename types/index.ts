@@ -38,3 +38,15 @@ export interface ProgressData {
   total: number;
   completed: number;
 }
+
+export interface MemberDAO {
+  id: number;
+  user_id: string;
+  nickname: string;
+}
+
+export interface MemberDTO {
+  id: number;
+  userId: string;
+  nickname: string;
+}

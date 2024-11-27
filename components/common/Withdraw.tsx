@@ -1,15 +1,15 @@
 "use client"
-import { signout } from "@/lib/memberAction"
+import { withdraw } from "@/lib/memberAction"
 import { BasicButton } from "../ui";
 
-export function LogOutBtn(){
+export function Withdraw(){
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await signout()
+    await withdraw()
   };
   return (
     <form onSubmit={handleSubmit}>
-      <BasicButton variant="filled" type="submit" className="font-bold">LogOut</BasicButton>
+      <BasicButton variant="secondary" type="submit" className="w-[200px]">회원 탈퇴</BasicButton>
     </form>
   )
 }
